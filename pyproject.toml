@@ -1,4 +1,4 @@
-poetry add pymongo[tool.poetry]
+[tool.poetry]
 name = "testapp"
 version = "0.1.0"
 description = "none"
