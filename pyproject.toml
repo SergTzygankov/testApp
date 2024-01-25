@@ -1,0 +1,15 @@
+poetry add pymongo[tool.poetry]
+name = "testapp"
+version = "0.1.0"
+description = "none"
+authors = ["Your Name <you@example.com>"]
+license = "n"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
