@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(max_length=200, verbose_name='Answer text')),
                 ('is_correct', models.BooleanField(default=False, verbose_name='Is answer correct')),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tests.question')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_for_tests.question')),
             ],
             options={
                 'verbose_name': 'Answer',
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('user', models.CharField(max_length=200, verbose_name='User name')),
                 ('result', models.IntegerField(default=0, verbose_name='Result')),
-                ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tests.test')),
+                ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_for_tests.test')),
             ],
             options={
                 'verbose_name': 'Result',
@@ -59,6 +59,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='question',
             name='test',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tests.test'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_for_tests.test'),
         ),
     ]
