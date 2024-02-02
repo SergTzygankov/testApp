@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from tests.models import Test, Question, Answer, Result
+from .models import Test, Question, Answer, Result
 
 
 def index(request):
