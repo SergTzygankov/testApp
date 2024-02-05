@@ -4,7 +4,7 @@ from .models import Test, Question, Answer, Result
 
 def index(request):
     test_list = Test.objects.all()
-    template = 'tests/index.html'
+    template = 'app_for_tests/index.html'
     context = {'test_list': test_list,}
     return render(request, template, context)
 

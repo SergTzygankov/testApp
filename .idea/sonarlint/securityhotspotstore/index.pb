@@ -29,3 +29,6 @@ N
 Testapp/app_for_tests/admin.py,1\0\10d8bc62954ab985207425a637fafed4ded10894
 N
 Testapp/app_for_tests/forms.py,4\8\48e6f332bae4f9603be2b77818d301b5bdad011a
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
