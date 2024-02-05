@@ -12,7 +12,7 @@ def index(request):
 def choose_test(request, test_id):
     test = get_object_or_404(Test, pk=test_id)
     question_list = Question.objects.filter(test=test)
-    template = 'tests/choose_test.html'
+    template = 'app_for_tests/choose_test.html'
     context = {'test': test, 'question_list': question_list}
     return render(request, template, context)
 
@@ -21,7 +21,7 @@ def choose_question(request, test_id, question_id):
     test = get_object_or_404(Test, pk=test_id)
     question = get_object_or_404(Question, pk=question_id)
     answer_list = Answer.objects.filter(question=question)
-    template = 'tests/choose_question.html'
+    template = 'app_for_tests/choose_question.html'
     context = {'test': test, 'question': question, 'answer_list': answer_list}
     return render(request, template, context)
 
@@ -29,11 +29,11 @@ def choose_question(request, test_id, question_id):
 def test_result(request, test_id):
     test = get_object_or_404(Test, pk=test_id)
     question_list = Question.objects.filter(test=test)
-    template = 'tests/test_result.html'
+    template = 'app_for_tests/test_result.html'
     context = {'test': test, 'question_list': question_list}
     return render(request, template, context)
 
 
 def test_create(request):
-    template = 'tests/test_create.html'
+    template = 'app_for_tests/test_create.html'
     return render(request, template)
