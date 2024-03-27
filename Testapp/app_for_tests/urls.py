@@ -5,10 +5,9 @@ app_name = 'app_for_tests'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('app_for_tests/<int:test_id>/', views.choose_test, name='choose_test'),
-    path('app_for_tests/<int:test_id>/questions/<int:question_id>', views.choose_question, name='choose_question'),
-    path('app_for_tests/<int:test_id>/result', views.test_result, name='test_result'),
-    path('app_for_tests/create', views.test_create, name='test_create'),
-
+    path('create/', views.test_create, name='test_create'),  # Обновленный URL-адрес
+    path('<int:test_id>/', views.choose_test, name='choose_test'),
+    path('/<int:test_id>/start/', views.start_test, name='start_test'),  # Новый URL-шаблон для начала теста
+    path('test_result/<int:test_id>/', views.test_result, name='test_result'),
+    path('<int:test_id>/questions/<int:question_id>/', views.choose_question, name='choose_question'),
 ]
-

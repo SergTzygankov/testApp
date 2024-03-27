@@ -1,31 +1,26 @@
-from  django import forms
-
-from .models import Test, Question, Answer, Result
+from django import forms
+from .models import Test, Question, Answer
 
 class TestForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(TestForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['class'] = 'form-control'
-        self.fields['description'].widget.attrs['class'] = 'form-control'
-
     class Meta:
-        moddel = Test
-        fields = ['name', 'description']
+        model = Test
+        fields = ['title']
 
-    class Question(forms.ModelForm):
-        def __init__(self, *args, **kwargs):
-            super(QuestionForm, self).__init__(*args, **kwargs)
-            self.fields['text'].widget.attrs['class'] = 'form-control'
-            self.fields['is_correct'].widget.attrs['class'] = 'form-control'
-            self.fields['test'].widget.attrs['class'] = 'form-control'
-            self.fields['question'].widget.attrs['class'] = 'form-control'
-            self.fields['answer'].widget.attrs['class'] = 'form-control'
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['text']
 
-    class Answer(forms.ModelForm):
-        def __init__(self, *args, **kwargs):
-            super(AnswerForm, self).__init__(*args, **kwargs)
-            self.fields['text'].widget.attrs['class'] = 'form-control'
-            self.fields['is_correct'].widget.attrs['class'] = 'form-control'
-            self.fields['question'].widget.attrs['class'] = 'form-control'
-            self.fields['answer'].widget.attrs['class'] = 'form-control'
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['text', 'is_correct']
 
+
+AnswerFormSet = forms.inlineformset_factory(
+    Question,  # Родительская модель
+    Answer,    # Дочерняя модель
+    fields=['text', 'is_correct'],  # Поля, которые вы хотите отобразить в форме
+    extra=4,   # Изначальное количество дополнительных форм
+    can_delete=True,  # Позволяет удалять дополнительные формы
+)

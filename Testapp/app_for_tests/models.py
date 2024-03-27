@@ -1,6 +1,4 @@
 from django.db import models
-from poetry.console.commands import self
-
 
 class Test(models.Model):
     title = models.CharField(max_length=100, verbose_name='Test name')

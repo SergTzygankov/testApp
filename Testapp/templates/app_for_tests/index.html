@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <h1>index view</h1>
-    <title>Title</title>
+    <title>Tests List</title>
 </head>
 <body>
+    <h1>Available Tests</h1>
+    <ul>
+        {% for test in test_list %}
+            <li><a href="{% url 'app_for_tests:choose_test' test.id %}">{{ test.title }}</a></li>
+        {% endfor %}
+
+    </ul>
+
+    <a href="{% url 'app_for_tests:test_create' %}">Create Test</a>
 
 </body>
 </html>
