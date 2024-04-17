@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Test</title>
+</head>
+<body>
+    <h1>Create Test</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ test_form.as_p }}
+        <label for="num_questions">Number of Questions:</label>
+        <input type="number" id="num_questions" name="num_questions" min="1">
+        <div id="questions-container"></div>
+        <button type="button" onclick="addQuestions()">Add Questions</button>
+        <input type="submit" value="Create Test">
+    </form>
+
+    <script>
+        function addQuestions() {
+            var numQuestions = document.getElementById('num_questions').value;
+            var container = document.getElementById('questions-container');
+            container.innerHTML = ''; // Очищаем контейнер перед добавлением новых вопросов
+            for (var i = 0; i < numQuestions; i++) {
+                var questionDiv = document.createElement('div');
+                questionDiv.innerHTML = '<h3>Question ' + (i + 1) + '</h3>' +
+                    '<input type="text" name="question_text_' + i + '" placeholder="Question text">' +
+                    '<h4>Add Answers</h4>' +
+                    '<input type="text" name="answer_text_' + i + '_0" placeholder="Answer text">' +
+                    '<input type="checkbox" name="is_correct_' + i + '_0" id="is_correct_' + i + '_0">' +
+                    '<label for="is_correct_' + i + '_0">Is correct</label>' +
+                    '<input type="text" name="answer_text_' + i + '_1" placeholder="Answer text">' +
+                    '<input type="checkbox" name="is_correct_' + i + '_1" id="is_correct_' + i + '_1">' +
+                    '<label for="is_correct_' + i + '_1">Is correct</label>' +
+                    '<input type="text" name="answer_text_' + i + '_2" placeholder="Answer text">' +
+                    '<input type="checkbox" name="is_correct_' + i + '_2" id="is_correct_' + i + '_2">' +
+                    '<label for="is_correct_' + i + '_2">Is correct</label>' +
+                    '<input type="text" name="answer_text_' + i + '_3" placeholder="Answer text">' +
+                    '<input type="checkbox" name="is_correct_' + i + '_3" id="is_correct_' + i + '_3">' +
+                    '<label for="is_correct_' + i + '_3">Is correct</label>';
+                container.appendChild(questionDiv);
+            }
+        }
+    </script>
+</body>
+</html>
