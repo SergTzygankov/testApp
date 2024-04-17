@@ -10,6 +10,7 @@ def index(request):
     template = 'app_for_tests/index.html'
     context = {'test_list': test_list,}
 
+<<<<<<< HEAD
     return render(request, template, context)
 
 
@@ -40,7 +41,39 @@ def test_create(request):
             return redirect('/')
     else:
         test_form = TestForm()
+=======
+>>>>>>> c158db288355eeeb7321d33df39bbca1c71e782d
     return render(request, template, context)
+
+
+def test_create(request):
+    template = 'app_for_tests/test_create.html'
+
+    if request.method == 'POST':
+        test_form = TestForm(request.POST)
+        if test_form.is_valid():
+            test = test_form.save()
+            for key, value in request.POST.items():
+                if key.startswith('question_text_'):
+                    question_text = value
+                    question = QuestionForm({'text': question_text})
+                    if question.is_valid():
+                        question = question.save(commit=False)
+                        question.test = test
+                        question.save()
+                        question_index = key.split('_')[-1]
+                        for i in range(4):
+                            answer_text = request.POST.get(f'answer_text_{question_index}_{i}', '')
+                            is_correct = request.POST.get(f'is_correct_{question_index}_{i}', False)
+                            answer = AnswerForm({'text': answer_text, 'is_correct': is_correct})
+                            if answer.is_valid():
+                                answer = answer.save(commit=False)
+                                answer.question = question
+                                answer.save()
+            return redirect('/')  # Перенаправьте пользователя на страницу успешного создания
+    else:
+        test_form = TestForm()
+    return render(request, template, {'test_form': test_form})
 
 
 def choose_test(request, test_id):
