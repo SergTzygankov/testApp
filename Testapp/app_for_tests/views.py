@@ -10,7 +10,6 @@ def index(request):
     template = 'app_for_tests/index.html'
     context = {'test_list': test_list,}
 
-<<<<<<< HEAD
     return render(request, template, context)
 
 
@@ -41,8 +40,6 @@ def test_create(request):
             return redirect('/')
     else:
         test_form = TestForm()
-=======
->>>>>>> c158db288355eeeb7321d33df39bbca1c71e782d
     return render(request, template, context)
 
 
